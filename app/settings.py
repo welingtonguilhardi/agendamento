@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'autenticacao',
     'evento',
     'django_celery_beat',
-    'home'
+    'home',
+    'blog'
 ]
 
 MIDDLEWARE = [
