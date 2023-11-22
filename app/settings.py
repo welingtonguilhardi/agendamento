@@ -27,7 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'autenticacao'
+    'autenticacao',
+    'evento',
+    'django_celery_beat',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +132,23 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert alert-success',
     messages.WARNING: 'alert alert-warning',
 }
+
+# Celery
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0" #1
+
+CELERY_ACCEPT_CONTENT = ["json",]#2
+
+CELERY_TASK_SERIALIZER = "json"#3
+
+# Celery BEAT
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+# enviar email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = "Welington | Teste"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'welingtonguilhard75@gmail.com'
+EMAIL_HOST_PASSWORD = 'kmnd igjn mwel xtlq'

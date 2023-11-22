@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portifólio</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+
+
+        <link rel="icon" href="./favicon-32x32.png" type="image/png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+    </head>
+
+
+
+
+    <body>
+        <div class="conteiner" >
+
+            <div id="projetos"></div>
+                <section class="sessao-projetos" >
+
+
+                    <div class="sessao-header" >
+                        <h1>Projetos</h1>
+                    </div>
+
+                        <div class="projetos">
+                            <div class="card">
+                                <div class="card-img-wrapper">
+                                    <img src="{% static 'home/img/projeto-img1.jpg' %}" alt="">
+                                </div>
+                                <div class="card-info">
+                                    <h2>Agendamento de Tarefas</h2>
+                                    <h3>Django, Redis, Celery</h3>
+                                    <p>Desenvolvi um sistema eficiente de agendamento de tarefas utilizando Django, Celery e Redis. O Celery, em conjunto com o Redis, permite o processamento eficaz de filas, garantindo a execução pontual das tarefas. Destaque para a notificação automática aos usuários quando uma tarefa atinge seu prazo.</p>
+                                    <button id='botao-projeto-agendamento'><a>Saiba Mais</a></button>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-img-wrapper">
+                                <img src="{% static 'home/img/projeto-img2.jpg' %}" alt="">
+                                </div>
+                                <div class="card-info">
+                                    <h2>Loja Cosmeticos</h2>
+                                    <h3>HTML, Bootstrap</h3>
+                                    <p>Este projeto é apenas um modelo que representa uma loja de cosmeticos.
+                                        O projeto não está 100% pronto, pois é apenas uma representação de estilo para clientes.</p>
+                                        <button ><a href="./Produtos de loja (exibição)/index.html">Saiba Mais</a> </button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-img-wrapper">
+                                    <img src="{% static 'home/img/projeto-img3.jpg' %}" alt="Imagem Projeto">
+                                </div>
+                                <div class="card-info">
+                                    <h2>Jogo da memoria Web </h2>
+                                    <h3>HTML, CSS, JavaScript</h3>
+                                    <p>Jogo desenvolvido durante curso, para testes de conhecimentos gerais
+                                        de HTML, CSS, JavaScript
+                                        </p>
+                                        <button ><a href="./Jogo da memoria/index.html">Saiba Mais</a> </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                </section>
+            </div>
+        </div>    
+
+        <script>
+            // Script para abrir uma nova janela ao clicar no botão
+            document.getElementById('botao-projeto-agendamento').onclick = function() {
+                window.open("{% url 'painel' %}", "_blank");
+            };
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,50 @@
+/* Estilos para o formulário de cadastro */
+.form-container {
+  background-color: #f0f0f0;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #39e40f;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-container h1 {
+  text-align: center;
+  color: rgb(81, 255, 0); /* Cor verde */
+}
+
+.form-container label {
+  color: rgb(14, 14, 14); /* Cor verde */
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.form-control:focus {
+  border-color: rgb(31, 255, 2); /* Cor verde quando focado */
+}
+
+.botao {
+  background-color: #33ff00; /* Cor verde */
+  color: #fff;
+  border: none;
+  padding: 10px 60px;
+  border-radius: 5px;
+
+}
+
+.botao:hover {
+  background-color: #00ff2a; /* Cor verde escura ao passar o mouse */
+}
+
+/* Estilize as outras classes e elementos conforme necessário */
+
+.uf{
+  border: 1px solid #d4d4d4;
+  color: #008000;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+}

@@ -141,6 +141,8 @@
     border-radius:3px ;
     font-weight: bolder;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
 }
 
 #login_button:hover{
