@@ -8,7 +8,11 @@ from django.db import IntegrityError
 def index (request):
     
     posts = Post.objects.all()
-    curtida = CurtidaPost.objects.filter(autor=request.user).values_list('id_post', flat=True)
+    try:
+        curtida = CurtidaPost.objects.filter(autor=request.user).values_list('id_post', flat=True)
+    except:
+        curtida = []
+        
     context = {
         'posts': posts,
         'curtida':curtida
