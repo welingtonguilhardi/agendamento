@@ -4,6 +4,7 @@ from .models import Post,ComentarioPost,CurtidaPost
 
 from django.http import JsonResponse
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.messages import constants
 from django.contrib import messages
@@ -23,6 +24,7 @@ def index (request):
     
     return render(request,'index.html',context)
 
+@login_required(login_url="logar")
 def filtrar_post_autor(request):
     posts = Post.objects.filter(autor = request.user)
     try:
@@ -36,7 +38,7 @@ def filtrar_post_autor(request):
     }
     
     return render(request,'index.html',context)
-
+@login_required(login_url="logar")
 def filtrar_post_curtidos (request):
     try:
         curtidas = CurtidaPost.objects.filter(autor=request.user).values_list('id_post', flat=True)
@@ -54,7 +56,7 @@ def filtrar_post_curtidos (request):
     
     return render(request,'index.html',context)
     
-
+@login_required(login_url="logar")
 def criar_post(request):
     
     
@@ -73,7 +75,7 @@ def criar_post(request):
         except:
             messages.add_message(request,constants.ERROR,"Ocorreu um erro ao criar seu post")
             return render(request,'criar_post.html')
-        
+@login_required(login_url="logar")        
 def comentar_post (request,context):
     
     id_post = context['id_post']
@@ -123,7 +125,7 @@ def pegar_comentario(request, id_post):
 
 
 
-    
+@login_required(login_url="logar")
 def curtir_post (request,id_post):
     
     autor = request.user
@@ -138,7 +140,7 @@ def curtir_post (request,id_post):
             return JsonResponse({'curtida': False, 'curtidas_count': CurtidaPost.objects.filter(id_post=id_post).count()})
     except IntegrityError:
         return JsonResponse({'curtida': False, 'curtidas_count': 0})
-    
+@login_required(login_url="logar")    
 def excluir_curtida (request,id_curtida):
     
     user = request.user
