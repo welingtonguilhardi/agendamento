@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 from .models import Post,ComentarioPost,CurtidaPost
 
 from django.http import JsonResponse
 from django.db import IntegrityError
+
+from django.contrib.messages import constants
+from django.contrib import messages
 
 def index (request):
     
@@ -20,24 +23,57 @@ def index (request):
     
     return render(request,'index.html',context)
 
-
-
-def criar_post(request,form):
-    
-    user = request.user
-    titulo = form['titulo']
-    descricao = form['descricao']
-    
+def filtrar_post_autor(request):
+    posts = Post.objects.filter(autor = request.user)
     try:
-        
-        post = Post(autor = user,titulo = titulo,descricao = descricao)
-        post.save()
-        return True
-    
+        curtida = CurtidaPost.objects.filter(autor=request.user).values_list('id_post', flat=True)
     except:
+        curtida = []
         
-        return False
+    context = {
+        'posts': posts,
+        'curtida':curtida
+    }
     
+    return render(request,'index.html',context)
+
+def filtrar_post_curtidos (request):
+    try:
+        curtidas = CurtidaPost.objects.filter(autor=request.user).values_list('id_post', flat=True)
+        # Filtrar os posts com base nos IDs obtidos
+        posts_curtidos = Post.objects.filter(id__in=curtidas)
+             
+    except:
+        curtidas = []
+        posts_curtidos = []
+        
+    context = {
+        'posts': posts_curtidos,
+        'curtida':curtidas
+    }
+    
+    return render(request,'index.html',context)
+    
+
+def criar_post(request):
+    
+    
+    if request.method == 'GET':
+        return render(request,'criar_post.html')
+    else:    
+        user = request.user
+        titulo = request.POST['titulo']
+        descricao = request.POST['descricao']
+        
+        try:
+            
+            post = Post(autor = user,titulo = titulo,descricao = descricao)
+            post.save()
+            return redirect('/blog/')
+        except:
+            messages.add_message(request,constants.ERROR,"Ocorreu um erro ao criar seu post")
+            return render(request,'criar_post.html')
+        
 def comentar_post (request,context):
     
     id_post = context['id_post']
@@ -68,7 +104,7 @@ def excluir_comentario (request,id_comentario):
         
         return False  
 
-def get_comments_view(request, id_post):
+def pegar_comentario(request, id_post):
     # Obtenha os comentários do post
     comments = ComentarioPost.objects.filter(id_post=id_post).values('descricao')
 

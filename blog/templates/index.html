@@ -53,23 +53,23 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.html">Modelo Blog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'index-blog' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'criar_post'%}">Criar post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'filtrar_post_autor' %}">Filtrar por meus posts</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'filtrar_post_curtidos' %}">Filtrar por posts curtidos </a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url(' {% static "blog/assets/img/home-bg.jpg" %}')">
+        <header class="masthead" style="background-image: url('{% static 'blog/img/home-bg.jpg' %}')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -131,23 +131,23 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <ul class="list-inline text-center">
                             <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="https://api.whatsapp.com/send?phone=5575998383737">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                        <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="https://linkedin.com/in/welington-argolo-guilhardi-2476861b9">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="https://github.com/welingtonguilhardi">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -155,7 +155,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2023</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Welington Argolo Guilhardi 2023</div>
                     </div>
                 </div>
             </div>
@@ -191,7 +191,8 @@
                         likeCount.text(data.curtidas_count);
                     },
                     error: function () {
-                        console.log('Erro ao curtir o post.');
+                        alert('Erro ao curtir o post.\nCertifique-se de estar logado');
+                        window.location.href = '{% url "logar" %}';
                     }
                 });
             }
@@ -200,7 +201,7 @@
               })
             function openCommentsModal(postId) {
                 // Supondo que você tenha uma URL no Django para obter os comentários do post
-                var commentsUrl = 'get_comments/' + postId + '/';
+                var commentsUrl = 'pegar_comentario/' + postId + '/';
         
                 // Limpe o conteúdo anterior do modal
                 $('#commentsList').empty();
@@ -219,7 +220,8 @@
                         $('#commentsModal').modal('show');
                     },
                     error: function () {
-                        console.log('Erro ao obter os comentários.');
+                        alert('Erro ao obter os comentários.\nCertifique-se de estar logado');
+                        window.location.href = '{% url "logar" %}';
                     }
                 });
             }
