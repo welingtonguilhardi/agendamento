@@ -38,7 +38,7 @@
                         <form id="commentForm" method = 'post'> {% csrf_token %}
                             <div class="mb-3">
                                 <label for="commentText" class="form-label">Comentário:</label>
-                                <textarea class="form-control" id="commentText" name="commentText" rows="3"></textarea>
+                                <textarea class="form-control" id="commentText" name="descricao" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Comentar</button>
                         </form>
@@ -205,6 +205,12 @@
         
                 // Limpe o conteúdo anterior do modal
                 $('#commentsList').empty();
+                // Adicione um campo de input ao formulário no modal
+                var inputField = '<input type="hidden" name="id_post" value="' + postId + '">';
+
+                // Adicione o campo de input ao formulário
+                $('#commentForm').append(inputField);
+
         
                 // Faça uma solicitação AJAX para obter os comentários
                 $.ajax({

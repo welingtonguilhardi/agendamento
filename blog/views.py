@@ -10,6 +10,12 @@ from django.contrib.messages import constants
 from django.contrib import messages
 
 def index (request):
+    if request.method == "POST":
+        context = {
+            'id_post': request.POST['id_post'],
+            'descricao':request.POST['descricao']
+        }
+        comentar_post (request,context)
     
     posts = Post.objects.all()
     try:
@@ -21,7 +27,6 @@ def index (request):
         'posts': posts,
         'curtida':curtida
     }
-    
     return render(request,'index.html',context)
 
 @login_required(login_url="logar")
@@ -83,14 +88,14 @@ def comentar_post (request,context):
     autor = request.user
     
     try:
-        
+        id_post = Post.objects.get(id = id_post)
         comentario = ComentarioPost(autor = autor, id_post = id_post, descricao = descricao )
         comentario.save()
         return True
     
-    except:
-        
-        return False
+    except Exception as e :
+        print(e)
+        return False  
     
 def excluir_comentario (request,id_comentario):
     
