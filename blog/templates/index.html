@@ -205,8 +205,11 @@
         
                 // Limpe o conteúdo anterior do modal
                 $('#commentsList').empty();
+                $('#id_post').remove();
+
+                
                 // Adicione um campo de input ao formulário no modal
-                var inputField = '<input type="hidden" name="id_post" value="' + postId + '">';
+                var inputField = '<div id = "id_post"> <input type="hidden" name="id_post" value="' + postId + '"> </div>';
 
                 // Adicione o campo de input ao formulário
                 $('#commentForm').append(inputField);
