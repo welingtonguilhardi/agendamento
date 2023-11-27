@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'jogo_da_velha/css/jogo.css' %}">
+    <title>Jogo da velha</title>
+</head>
+<body>
+    <h2 class="header">Jogo da velha</h2>
+    <h3 class="header">Vez do:  <span id="user" >Usuario 1</span></h3>
+    <div class="container">
+
+        
+        <div class="item" >
+             <button id="boxOne"> </button>
+        </div>
+
+        <div class="item" >
+             <button id="boxTwo"></button>
+        </div>
+
+        <div class="item" > 
+            <button id="boxThree"></button>
+        </div>
+
+        <div class="item" >
+            <button id="boxFour"></button>
+        </div>
+
+        <div class="item" >
+            <button id="boxFive"></button>
+        </div>
+
+        <div class="item" >
+            <button id="boxSix"></button>
+        </div>
+
+        <div class="item" >
+            <button id="boxSeven"></button>
+        </div> 
+
+        <div class="item" >
+            <button id="boxEight" ></button>
+        </div> 
+        
+        <div class="item" >
+            <button id="boxNine"></button>
+        </div> 
+
+        <div></div>
+
+        <div  >
+            <button class="reset"><a class="reset" onclick="window.location.reload(true)">Reiniciar</a></button>
+        </div>
+
+        <div></div>
+    </div>   
+    
+    <script src="{% static 'jogo_da_velha/js/jogo.js' %}"></script>
+</body>
+</html>

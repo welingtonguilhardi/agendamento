@@ -7,5 +7,6 @@ urlpatterns = [
     path('auth/',include('autenticacao.urls')),
     path('evento/',include('evento.urls')),
     path('blog/',include('blog.urls')),
+    path('jogo_da_velha',include('jogo_da_velha.urls')),
     path('',home, name='home')
 ]
